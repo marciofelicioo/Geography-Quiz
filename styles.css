@@ -1,3 +1,4 @@
+/* Style for the background */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -82,41 +83,25 @@ button {
     transition: background-color 0.3s, box-shadow 0.3s;
     font-size: 1em;
     width: 100%; 
+    -webkit-tap-highlight-color: transparent; /* Prevent tap highlight on mobile */
 }
 
-button:focus {
-    outline: none;
-}
-
-button:active {
+button:hover {
     background-color: #0056b3;
+}
+
+button:focus,
+button:active {
+    outline: none;
+    background-color: #007bff; /* Same as default */
     box-shadow: none;
 }
 
+/* Optional: Add styles for better UX */
 .option-button {
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    transition: background-color 0.3s, border-color 0.3s;
-    width: 100%;
+    /* Additional styles can be added here if needed */
 }
 
-.option-button:hover {
-    background-color: #0056b3;
-}
-
-.option-button:focus {
-    outline: none;
-}
-
-.option-button.active {
-    background-color: #d0d0d0;
-}
-
-/* Feedback and Score Styling */
 p#feedback {
     margin-top: 20px;
     font-size: 1.2em;
