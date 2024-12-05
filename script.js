@@ -24,7 +24,7 @@ async function loadCountries() {
         loadCountry();
     } catch (error) {
         console.error("Failed to load countries:", error);
-        feedbackElement.textContent = "Error loading country data. Please try again later or refresh the page.";
+        feedbackElement.textContent = "Erro ao carregar os dados dos países. Por favor, tente novamente mais tarde ou atualize a página.";
     }
 }
 
@@ -41,11 +41,11 @@ function loadCountry() {
         flagElement.src = currentCountry.flag;
         feedbackElement.textContent = "";
         generateOptions(currentCountry.capital);
-        scoreElement.textContent = `Score: ${score}`;
-        counterElement.textContent = `Question ${currentCountryIndex + 1} / ${countries.length}`;
+        scoreElement.textContent = `Pontuação: ${score}`;
+        counterElement.textContent = `Questão ${currentCountryIndex + 1} / ${countries.length}`;
     } else {
-        feedbackElement.textContent = "Congratulations! You completed the game!";
-        scoreElement.textContent = `Final Score: ${score} / ${countries.length}`;
+        feedbackElement.textContent = "Parabéns! Você completou o jogo!";
+        scoreElement.textContent = `Pontuação Final: ${score} / ${countries.length}`;
         counterElement.textContent = "";
         optionsContainer.innerHTML = "";
     }
@@ -53,7 +53,6 @@ function loadCountry() {
 
 function generateOptions(correctCapital) {
     optionsContainer.innerHTML = "";
-
 
     const incorrectCapitals = countries
         .filter((country) => country.capital !== correctCapital)
@@ -66,17 +65,20 @@ function generateOptions(correctCapital) {
     options.forEach((capital) => {
         const button = document.createElement("button");
         button.textContent = capital;
-        button.addEventListener("click", () => handleAnswer(capital, correctCapital));
+        button.addEventListener("click", (event) => handleAnswer(event, capital, correctCapital));
         optionsContainer.appendChild(button);
     });
 }
 
-function handleAnswer(selectedCapital, correctCapital) {
+function handleAnswer(event, selectedCapital, correctCapital) {
+    const button = event.target;
+    button.blur();
+
     if (selectedCapital === correctCapital) {
-        feedbackElement.textContent = "Correct!";
+        feedbackElement.textContent = "Correto!";
         score++;
     } else {
-        feedbackElement.textContent = `Incorrect! The correct answer is ${correctCapital}.`;
+        feedbackElement.textContent = `Incorreto! A resposta correta é ${correctCapital}.`;
     }
     currentCountryIndex++;
     setTimeout(loadCountry, 2000);
