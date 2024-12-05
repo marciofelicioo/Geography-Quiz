@@ -1,10 +1,9 @@
-/* Style for the background */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #fff; 
-    background-image: url('vlcsnap-2024-12-05-19h57m08s474.png'); /* Alternative background image */
+    background-image: url('vlcsnap-2024-12-05-19h57m08s474.png');
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
@@ -83,7 +82,7 @@ button {
     transition: background-color 0.3s, box-shadow 0.3s;
     font-size: 1em;
     width: 100%; 
-    -webkit-tap-highlight-color: transparent; /* Prevent tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
@@ -93,13 +92,11 @@ button:hover {
 button:focus,
 button:active {
     outline: none;
-    background-color: #007bff; /* Same as default */
+    background-color: #007bff;
     box-shadow: none;
 }
 
-/* Optional: Add styles for better UX */
 .option-button {
-    /* Additional styles can be added here if needed */
 }
 
 p#feedback {

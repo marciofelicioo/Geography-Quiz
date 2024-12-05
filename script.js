@@ -6,7 +6,7 @@ const flagElement = document.getElementById("flag");
 const optionsContainer = document.getElementById("options");
 const feedbackElement = document.getElementById("feedback");
 const scoreElement = document.getElementById("score");
-const counterElement = document.getElementById("counter"); // Counter Element
+const counterElement = document.getElementById("counter");
 
 async function loadCountries() {
     try {
@@ -65,8 +65,7 @@ function generateOptions(correctCapital) {
     options.forEach((capital) => {
         const button = document.createElement("button");
         button.textContent = capital;
-        button.classList.add("option-button"); // Add a class for styling
-        // Pass the event to handleAnswer
+        button.classList.add("option-button"); 
         button.addEventListener("click", (event) => handleAnswer(event, capital, correctCapital));
         optionsContainer.appendChild(button);
     });
@@ -74,7 +73,6 @@ function generateOptions(correctCapital) {
 
 function handleAnswer(event, selectedCapital, correctCapital) {
     const button = event.target;
-    // Remove focus from the clicked button
     button.blur();
 
     if (selectedCapital === correctCapital) {
@@ -86,18 +84,15 @@ function handleAnswer(event, selectedCapital, correctCapital) {
     currentCountryIndex++;
     setTimeout(() => {
         loadCountry();
-        // Ensure no button remains focused after loading the next question
         removeActiveStates();
     }, 2000);
 }
 
 function removeActiveStates() {
-    // Remove any active classes or focus from buttons
     const buttons = optionsContainer.querySelectorAll("button");
     buttons.forEach((button) => {
         button.classList.remove("active");
     });
-    // Additionally, blur any focused element
     if (document.activeElement) {
         document.activeElement.blur();
     }
