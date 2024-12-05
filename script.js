@@ -24,7 +24,7 @@ async function loadCountries() {
         loadCountry();
     } catch (error) {
         console.error("Failed to load countries:", error);
-        feedbackElement.textContent = "Error loading country data. Try again later.";
+        feedbackElement.textContent = "Error loading country data. Please try again later or refresh the page.";
     }
 }
 
