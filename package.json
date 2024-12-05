@@ -1,0 +1,24 @@
+{
+  "name": "geography-game",
+  "version": "1.0.0",
+  "description": "A geography quiz game to guess capitals and flags of the world using HTML, CSS, and JavaScript.",
+  "main": "script.js",
+  "scripts": {
+    "start": "live-server",
+    "build": "echo 'No build step required for this project.'"
+  },
+  "keywords": [
+    "geography",
+    "quiz",
+    "game",
+    "flags",
+    "capitals",
+    "javascript",
+    "frontend"
+  ],
+  "author": "marciofelicioo",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

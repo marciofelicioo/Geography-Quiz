@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Container do vídeo de fundo -->
+    <div class="background-video-container" id="background-video-container">
+        <video id="background-video" muted loop playsinline preload="auto">
+            <source src="Map.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="game-container">
+        <h1>Geography Quiz</h1>
+        <!-- Contador de Perguntas -->
+        <p id="counter">Question 0 / 0</p>
+        <img id="flag" src="" alt="Country Flag">
+        <p>What is the capital of this country?</p>
+        <div class="options-container" id="options">
+            <!-- Botões de opções serão gerados dinamicamente -->
+        </div>
+        <p id="feedback"></p>
+        <p id="score"></p>
+    </div>
+
+    <!-- JavaScript para garantir autoplay e exibir o vídeo -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const videoContainer = document.getElementById("background-video-container");
+            const video = document.getElementById("background-video");
+
+            video.addEventListener("loadeddata", () => {
+                videoContainer.style.display = "block"; // Mostra o vídeo
+                document.body.style.backgroundImage = "none"; // Remove a imagem de fundo
+            });
+
+            let attempts = 0;
+            const interval = setInterval(() => {
+                video.play().then(() => {
+                    console.log("Autoplay bem-sucedido!");
+                    videoContainer.style.display = "block"; // Mostra o vídeo
+                    document.body.style.backgroundImage = "none"; // Remove a imagem de fundo
+                    clearInterval(interval); // Para o loop
+                }).catch(error => {
+                    attempts++;
+                    console.warn(`Tentativa ${attempts} falhou:`, error);
+                    if (attempts >= 10) {
+                        clearInterval(interval);
+                        console.error("Não foi possível iniciar o autoplay após várias tentativas.");
+                    }
+                });
+            }, 500);
+
+            document.addEventListener("click", () => video.play());
+            document.addEventListener("touchstart", () => video.play());
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
