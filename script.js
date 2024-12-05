@@ -6,7 +6,7 @@ const flagElement = document.getElementById("flag");
 const optionsContainer = document.getElementById("options");
 const feedbackElement = document.getElementById("feedback");
 const scoreElement = document.getElementById("score");
-const counterElement = document.getElementById("counter"); // Elemento de contador
+const counterElement = document.getElementById("counter");
 
 async function loadCountries() {
     try {
@@ -24,7 +24,7 @@ async function loadCountries() {
         loadCountry();
     } catch (error) {
         console.error("Failed to load countries:", error);
-        feedbackElement.textContent = "Erro ao carregar os dados dos países. Por favor, tente novamente mais tarde ou atualize a página.";
+        feedbackElement.textContent = "Error loading country data. Please try again later or refresh the page.";
     }
 }
 
@@ -41,11 +41,11 @@ function loadCountry() {
         flagElement.src = currentCountry.flag;
         feedbackElement.textContent = "";
         generateOptions(currentCountry.capital);
-        scoreElement.textContent = `Pontuação: ${score}`;
-        counterElement.textContent = `Questão ${currentCountryIndex + 1} / ${countries.length}`;
+        scoreElement.textContent = `Score: ${score}`;
+        counterElement.textContent = `Question ${currentCountryIndex + 1} / ${countries.length}`;
     } else {
-        feedbackElement.textContent = "Parabéns! Você completou o jogo!";
-        scoreElement.textContent = `Pontuação Final: ${score} / ${countries.length}`;
+        feedbackElement.textContent = "Congratulations! You completed the game!";
+        scoreElement.textContent = `Final Score: ${score} / ${countries.length}`;
         counterElement.textContent = "";
         optionsContainer.innerHTML = "";
     }
@@ -65,6 +65,7 @@ function generateOptions(correctCapital) {
     options.forEach((capital) => {
         const button = document.createElement("button");
         button.textContent = capital;
+        button.classList.add("option-button");
         button.addEventListener("click", (event) => handleAnswer(event, capital, correctCapital));
         optionsContainer.appendChild(button);
     });
@@ -72,16 +73,30 @@ function generateOptions(correctCapital) {
 
 function handleAnswer(event, selectedCapital, correctCapital) {
     const button = event.target;
+    // Remove focus from the clicked button
     button.blur();
 
     if (selectedCapital === correctCapital) {
-        feedbackElement.textContent = "Correto!";
+        feedbackElement.textContent = "Correct!";
         score++;
     } else {
-        feedbackElement.textContent = `Incorreto! A resposta correta é ${correctCapital}.`;
+        feedbackElement.textContent = `Incorrect! The correct answer is ${correctCapital}.`;
     }
     currentCountryIndex++;
-    setTimeout(loadCountry, 2000);
+    setTimeout(() => {
+        loadCountry();
+        removeActiveStates();
+    }, 2000);
+}
+
+function removeActiveStates() {
+    const buttons = optionsContainer.querySelectorAll("button");
+    buttons.forEach((button) => {
+        button.classList.remove("active");
+    });
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
 }
 
 loadCountries();

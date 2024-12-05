@@ -1,10 +1,9 @@
-/* Estilo para o fundo */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #fff; 
-    background-image: url('vlcsnap-2024-12-05-19h57m08s474.png'); /* Imagem de fundo alternativa */
+    background-image: url('vlcsnap-2024-12-05-19h57m08s474.png'); /* Alternative background image */
     background-size: cover;
     background-position: center;
     overflow-x: hidden;
@@ -80,15 +79,44 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
     font-size: 1em;
     width: 100%; 
 }
 
-button:hover {
+button:focus {
+    outline: none;
+}
+
+button:active {
+    background-color: #0056b3;
+    box-shadow: none;
+}
+
+.option-button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+    width: 100%;
+}
+
+.option-button:hover {
     background-color: #0056b3;
 }
 
+.option-button:focus {
+    outline: none;
+}
+
+.option-button.active {
+    background-color: #d0d0d0;
+}
+
+/* Feedback and Score Styling */
 p#feedback {
     margin-top: 20px;
     font-size: 1.2em;
@@ -100,7 +128,6 @@ p#score {
     font-weight: bold;
     margin-top: 10px;
 }
-
 
 @media (max-width: 600px) {
     img#flag {
