@@ -7,6 +7,7 @@ const optionsContainer = document.getElementById("options");
 const feedbackElement = document.getElementById("feedback");
 const scoreElement = document.getElementById("score");
 const counterElement = document.getElementById("counter");
+const countryNameElement = document.getElementById("country-name");
 
 async function loadCountries() {
     try {
@@ -39,6 +40,7 @@ function loadCountry() {
     if (currentCountryIndex < countries.length) {
         const currentCountry = countries[currentCountryIndex];
         flagElement.src = currentCountry.flag;
+        countryNameElement.textContent = currentCountry.name;
         feedbackElement.textContent = "";
         generateOptions(currentCountry.capital);
         scoreElement.textContent = `Score: ${score}`;
